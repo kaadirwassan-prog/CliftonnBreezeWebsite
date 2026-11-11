@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Guest House in Clifton &amp; DHA Karachi | Clifton Breeze Guest House</title>
 <meta name="description" content="Clifton Breeze Guest House – clean, air-conditioned rooms and family suites in Clifton and DHA, Karachi. Rooms from Rs 8,000 per night incl. tax, 24/7 front desk, WiFi. Book online in 1 minute or call +92 300 0225347.">
@@ -97,6 +97,8 @@
 }
 </script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Nunito+Sans:wght@400;600;700&display=swap">
 <style>
 :root{
   --ink:#10242b; --muted:#56686d; --teal:#0e5a63; --teal-d:#0a3f46; --sand:#f7f2e8; --line:#e4dccb;
@@ -323,9 +325,92 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
   .mbar .btn{padding:13px 6px;font-size:15px;border-radius:10px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ===== theme layer: every themed surface reads a variable ===== */
+html{color-scheme:var(--scheme,light)}
+body{background:var(--white);color:var(--ink);font-family:var(--fb)}
+h1,h2,h3,.logo,.card p.rate b,.r-price b{font-family:var(--fh)}
+header,.trust,footer,.bk-h{background:var(--head)}
+header{border-bottom:1px solid var(--hair)}
+.card,.loc,.amen li,.steps li,.quick,.mbar,.bk-foot,dialog#bk{background:var(--card);color:var(--ink)}
+.card,.loc,.steps li,.amen li{border-color:var(--line);border-radius:var(--r)}
+.quick select,.quick input,.fld input,.fld select,.fld textarea,.step button,.seg label{background:var(--field);color:var(--ink)}
+.seg input:checked+label{background:var(--tint);border-color:var(--gold);color:var(--ink)}
+.seg.rt label span,.tot b,.card p.rate b{color:var(--price)}
+.btn{border-radius:var(--rb)}
+.btn-gold{background:linear-gradient(135deg,var(--gold-l),var(--gold));color:var(--gold-ink);box-shadow:0 6px 18px rgb(0 0 0 / .22)}
+.btn-gold:hover{background:var(--gold-l)}
+.btn-teal,.steps li::before{background:var(--teal);color:var(--teal-ink)}
+.btn-teal:hover{background:var(--teal-d)}
+.btn-ghost,.step button{color:var(--link);border-color:var(--link)}
+.btn-ghost:hover{background:var(--link);color:var(--card)}
+.amen svg,.contact li svg,.faq summary::after{color:var(--link)}
+.tags li{background:var(--sand);color:var(--ink);border-color:var(--line)}
+.hero::after{background:linear-gradient(180deg,rgb(var(--ov) / .78),rgb(var(--ov) / .5) 45%,rgb(var(--ov) / .92))}
+.price .tip{color:var(--tip)}
+.bar{background:linear-gradient(90deg,var(--gold),var(--gold-l))}
+.eyebrow,.logo b,.trust svg,footer h3{color:var(--gold-l)}
+.bk-foot{box-shadow:0 -10px 12px -8px rgb(0 0 0 / .2)}
+h1 em{font-style:italic;color:var(--gold-l)}
+.map,.gal button{border-radius:var(--r)}
+#bk{border-radius:calc(var(--r) + 4px)}
+
+/* rooms: one markup, arranged differently per style */
+.rm .r-img{overflow:hidden}
+.rm .r-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.rm:hover .r-img img{transform:scale(1.06)}
+.rm h3{font-size:1.6rem;margin-bottom:8px}
+.rm .r-txt p{color:var(--muted)}
+.rm .tags{margin-top:12px}
+.r-price span{display:block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.r-price b{display:block;font-size:1.9rem;line-height:1.15;color:var(--price)}
+.r-price small{color:var(--muted);font-size:13px}
+
+/* motion */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.09)}}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.hero-in>*,.m-txt>*,.e-txt>*,.x-txt>*,.x-panel{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+.hero-in>:nth-child(2),.m-txt>:nth-child(2),.e-txt>:nth-child(2),.x-txt>:nth-child(2){animation-delay:.1s}
+.hero-in>:nth-child(3),.m-txt>:nth-child(3),.e-txt>:nth-child(3),.x-txt>:nth-child(3){animation-delay:.2s}
+.hero-in>:nth-child(n+4),.m-txt>:nth-child(n+4),.e-txt>:nth-child(n+4),.x-txt>:nth-child(n+4),.x-panel{animation-delay:.32s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.js .rv{opacity:1;transform:none}}
+
+:root{--white:#fbf8f1;--sand:#f3ecdc;--card:#fff;--field:#fff;--ink:#14251f;--muted:#5b6b64;--line:#e2d6bb;--head:#0b3327;--hair:rgb(220 182 90 / .45);--gold:#b8892b;--gold-l:#dcb65a;--gold-ink:#1b1403;--teal:#0f4a38;--teal-d:#0b3327;--teal-ink:#fff;--link:#0f4a38;--price:#8a6414;--tint:#f6edd4;--ov:5 26 20;--tip:#8a5a00;--scheme:light;--fh:'Marcellus',Georgia,serif;--fb:'Nunito Sans',system-ui,sans-serif;--r:18px;--rb:12px}
+
+h1,h2,h3{font-weight:400}
+.hero{min-height:74vh;display:grid;align-items:end;border-radius:0 0 44px 44px;overflow:hidden}
+.hero>img{animation:kb 26s ease-in-out infinite alternate}
+.hero::after{background:linear-gradient(90deg,rgb(var(--ov) / .9),rgb(var(--ov) / .55) 55%,rgb(var(--ov) / .2))}
+.hero-in{text-align:left;padding:90px 0 110px}
+.hero h1{margin:0 0 16px;font-size:clamp(2.3rem,5.4vw,4.1rem);max-width:760px}
+.hero p.lead{margin:0 0 28px;max-width:560px}
+.c-cta{display:flex;gap:12px;flex-wrap:wrap}
+.c-out{border:1.5px solid rgb(255 255 255 / .7);color:#fff;background:rgb(255 255 255 / .08)}
+.c-out:hover{background:#fff;color:var(--teal-d)}
+.c-bar{position:relative;z-index:3;margin-top:-52px}
+.c-bar .quick{max-width:none;border-radius:20px;padding:20px;box-shadow:0 24px 60px rgb(11 51 39 / .22);border:1px solid var(--line)}
+.trust{background:transparent;color:var(--ink)}
+.trust ul{padding:30px 0 0}
+.trust svg{color:var(--gold)}
+.sec-h h2{font-size:clamp(1.9rem,3.8vw,2.7rem)}
+.rms{display:grid;gap:22px}
+.rm{display:grid;grid-template-columns:320px 1fr auto;background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;align-items:center;box-shadow:0 8px 30px rgb(11 51 39 / .07);transition:transform .3s,box-shadow .3s}
+.rm:hover{transform:translateX(6px);box-shadow:0 18px 44px rgb(11 51 39 / .14)}
+.rm .r-img{height:100%;min-height:230px}
+.rm .r-txt{padding:26px 28px}
+.rm .r-buy{padding:26px 28px;border-left:1px dashed var(--line);text-align:center;display:grid;gap:14px;min-width:220px}
+#gal{columns:auto;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;grid-auto-flow:dense;gap:12px}
+#gal button{margin:0;height:100%}
+#gal button:nth-child(6n+1){grid-column:span 2;grid-row:span 2}
+#gal img{height:100%;object-fit:cover}
+.sec.alt{background:linear-gradient(180deg,var(--sand),var(--white))}
+.steps li::before{border-radius:12px}
+@media (max-width:860px){.rm{grid-template-columns:1fr}.rm .r-img{min-height:0;aspect-ratio:4/3}.rm .r-buy{border-left:0;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;text-align:left}.hero{min-height:0;border-radius:0 0 26px 26px}.hero-in{padding:56px 0 90px}#gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px}.trust li{justify-content:flex-start}}
 </style>
 </head>
-<body>
+<body class="s3">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
@@ -339,16 +424,10 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 <header>
   <div class="wrap hd">
     <a href="#top" class="logo" aria-label="Clifton Breeze Guest House – home">Clifton<b>Breeze</b><small>Guest House · Karachi</small></a>
-    <nav aria-label="Main">
-      <ul>
-        <li><a href="#rooms">Rooms</a></li>
-        <li><a href="#locations">Locations</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#amenities">Amenities</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <nav aria-label="Main"><ul>
+      <li><a href="#rooms">Rooms</a></li><li><a href="#locations">Locations</a></li><li><a href="#gallery">Gallery</a></li>
+      <li><a href="#amenities">Amenities</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li>
+    </ul></nav>
     <div class="hd-cta">
       <a class="hd-phone" href="tel:+923000225347"><svg class="i"><use href="#i-phone"/></svg>0300 0225347</a>
       <button class="btn btn-gold btn-sm" data-book>Book Now</button>
@@ -357,86 +436,54 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 </header>
 
 <main id="top">
-  <section class="hero">
+  <section class="hero c-hero">
     <img src="images/guest-house-karachi-luxury-suite-1.jpg" alt="Luxury suite with king bed at Clifton Breeze Guest House, Karachi" width="1280" height="960" fetchpriority="high">
     <div class="wrap hero-in">
       <span class="eyebrow">Clifton · DHA · Karachi</span>
-      <h1>Comfortable Guest House in Clifton &amp; DHA, Karachi</h1>
+      <h1>Comfortable Guest House in <em>Clifton &amp; DHA</em>, Karachi</h1>
       <p class="lead">Clean, air-conditioned rooms and family suites for families, couples and business travellers — with a front desk that is open 24/7.</p>
-
-      <form class="quick" id="quick" aria-label="Check availability">
-        <div class="q-loc">
-          <label for="qLoc">Location</label>
-          <select id="qLoc">
-            <option value="Clifton">Clifton, Karachi</option>
-            <option value="DHA">DHA (Defence), Karachi</option>
-            <option value="Any">Either – whichever is available</option>
-          </select>
-        </div>
-        <div>
-          <label for="qIn">Check-in</label>
-          <input type="date" id="qIn">
-        </div>
-        <div>
-          <label for="qOut">Check-out</label>
-          <input type="date" id="qOut">
-        </div>
+      <div class="c-cta"><button class="btn btn-gold" data-book>Book Your Stay</button><a class="btn c-out" href="#rooms">View rooms &amp; rates</a></div>
+    </div>
+  </section>
+  <div class="wrap c-bar"><form class="quick" id="quick" aria-label="Check availability">
+        <div class="q-loc"><label for="qLoc">Location</label>
+          <select id="qLoc"><option value="Clifton">Clifton, Karachi</option><option value="DHA">DHA (Defence), Karachi</option><option value="Any">Either – whichever is available</option></select></div>
+        <div><label for="qIn">Check-in</label><input type="date" id="qIn"></div>
+        <div><label for="qOut">Check-out</label><input type="date" id="qOut"></div>
         <button class="btn btn-gold" type="submit">Check Availability</button>
-      </form>
-      <p class="hero-alt">Prefer to talk? Call <a href="tel:+923000225347">+92 300 0225347</a></p>
-    </div>
-  </section>
+      </form></div>
 
-  <div class="trust">
-    <ul class="wrap">
-      <li><svg class="i"><use href="#i-check"/></svg>2 locations: Clifton &amp; DHA</li>
-      <li><svg class="i"><use href="#i-check"/></svg>Family-friendly rooms</li>
-      <li><svg class="i"><use href="#i-check"/></svg>AC rooms, attached bath</li>
-      <li><svg class="i"><use href="#i-check"/></svg>Front desk open 24/7</li>
-    </ul>
-  </div>
+  <div class="trust"><ul class="wrap">
+    <li><svg class="i"><use href="#i-check"/></svg>2 locations: Clifton &amp; DHA</li>
+    <li><svg class="i"><use href="#i-check"/></svg>Family-friendly rooms</li>
+    <li><svg class="i"><use href="#i-check"/></svg>AC rooms, attached bath</li>
+    <li><svg class="i"><use href="#i-check"/></svg>Front desk open 24/7</li>
+  </ul></div>
 
-  <section id="rooms" class="sec">
-    <div class="wrap">
-      <div class="sec-h">
-        <div class="bar"></div>
-        <h2>Rooms &amp; Suites</h2>
-        <p>Every room is air-conditioned with an attached bathroom, TV and WiFi. Prices are per room per night and include tax. An extra mattress is Rs 1,000 per night (maximum 2 per room), and check-out is at 12:00 PM.</p>
-      </div>
-      <div class="rooms">
-        <article class="card">
-          <img src="images/guest-house-karachi-deluxe-double-room-1.jpg" alt="Deluxe double room with AC at Clifton Breeze Guest House Karachi" width="1040" height="780" loading="lazy">
-          <div class="card-b">
-            <h3>Deluxe Double Room</h3>
-            <p class="rate"><b>Rs 8,000</b> / night · incl. tax</p>
-            <p>A bright, spacious room with a double bed — ideal for couples and solo business travellers.</p>
-            <ul class="tags"><li>Up to 2 guests</li><li>Double bed</li><li>AC</li><li>Attached bath</li></ul>
-            <button class="btn btn-ghost btn-sm" data-book="Deluxe Double Room">Book this room</button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="images/guest-house-karachi-family-room-triple-1.jpg" alt="Family room with double and single bed in Karachi guest house" width="1280" height="960" loading="lazy">
-          <div class="card-b">
-            <h3>Family Room</h3>
-            <p class="rate"><b>Rs 12,000</b> / night · incl. tax</p>
-            <p>A double bed plus a single bed and a sitting area — room for parents and children to stay together.</p>
-            <ul class="tags"><li>Up to 3 guests</li><li>Double + single</li><li>Sitting area</li><li>AC</li></ul>
-            <button class="btn btn-ghost btn-sm" data-book="Family Room">Book this room</button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="images/guest-house-karachi-luxury-suite-2.jpg" alt="Luxury suite with sofa and TV at Clifton Breeze Guest House" width="640" height="640" loading="lazy">
-          <div class="card-b">
-            <h3>Luxury Suite</h3>
-            <p class="rate"><b>Rs 15,000</b> / night · incl. tax</p>
-            <p>Our most stylish room: a king bed with feature lighting, wooden flooring, sofa seating and a wall-mounted TV.</p>
-            <ul class="tags"><li>Up to 2 guests</li><li>King bed</li><li>Sofa seating</li><li>AC</li></ul>
-            <button class="btn btn-ghost btn-sm" data-book="Luxury Suite">Book this room</button>
-          </div>
-        </article>
-      </div>
+  <section id="rooms" class="sec"><div class="wrap">
+    <div class="sec-h"><div class="bar"></div><h2>Rooms &amp; Suites</h2>
+      <p>Every room is air-conditioned with an attached bathroom, TV and WiFi. Prices are per room per night and include tax. An extra mattress is Rs 1,000 per night (maximum 2 per room), and check-out is at 12:00 PM.</p></div>
+    <div class="rms">
+      <article class="rm">
+        <div class="r-img"><img src="images/guest-house-karachi-deluxe-double-room-1.jpg" alt="Deluxe double room with AC at Clifton Breeze Guest House Karachi" width="1040" height="780" loading="lazy"></div>
+        <div class="r-txt"><h3>Deluxe Double Room</h3><p>A bright, spacious room with a double bed — ideal for couples and solo business travellers.</p><ul class="tags"><li>Up to 2 guests</li><li>Double bed</li><li>AC</li><li>Attached bath</li></ul></div>
+        <div class="r-buy"><p class="r-price"><span>From</span><b>Rs 8,000</b><small>per night · incl. tax</small></p>
+          <button class="btn btn-teal btn-sm" data-book="Deluxe Double Room">Book this room</button></div>
+      </article>
+      <article class="rm">
+        <div class="r-img"><img src="images/guest-house-karachi-family-room-triple-1.jpg" alt="Family room with double and single bed in Karachi guest house" width="1280" height="960" loading="lazy"></div>
+        <div class="r-txt"><h3>Family Room</h3><p>A double bed plus a single bed and a sitting area — room for parents and children to stay together.</p><ul class="tags"><li>Up to 3 guests</li><li>Double + single</li><li>Sitting area</li><li>AC</li></ul></div>
+        <div class="r-buy"><p class="r-price"><span>From</span><b>Rs 12,000</b><small>per night · incl. tax</small></p>
+          <button class="btn btn-teal btn-sm" data-book="Family Room">Book this room</button></div>
+      </article>
+      <article class="rm">
+        <div class="r-img"><img src="images/guest-house-karachi-luxury-suite-1.jpg" alt="Luxury suite with king bed at Clifton Breeze Guest House" width="1280" height="960" loading="lazy"></div>
+        <div class="r-txt"><h3>Luxury Suite</h3><p>Our most stylish room: a king bed with feature lighting, wooden flooring, sofa seating and a wall-mounted TV.</p><ul class="tags"><li>Up to 2 guests</li><li>King bed</li><li>Sofa seating</li><li>AC</li></ul></div>
+        <div class="r-buy"><p class="r-price"><span>From</span><b>Rs 15,000</b><small>per night · incl. tax</small></p>
+          <button class="btn btn-teal btn-sm" data-book="Luxury Suite">Book this room</button></div>
+      </article>
     </div>
-  </section>
+  </div></section>
 
   <section id="locations" class="sec alt">
     <div class="wrap">
@@ -886,6 +933,15 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
   lb.querySelector('.ln').onclick = function(){ show(cur + 1); };
   lb.addEventListener('click', function(e){ if (e.target === lb || e.target.className === 'lbi') lb.close(); });
   lb.addEventListener('keydown', function(e){ if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1); });
+})();
+</script>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var els = document.querySelectorAll('.sec-h,.rm,.loc,.amen li,.steps li,.faq details,.contact>*,#gal button,.m-feats li,.trust li');
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(function(el, i){ el.classList.add('rv'); el.style.setProperty('--d', (i % 4) * 0.08 + 's'); io.observe(el); });
 })();
 </script>
 </body>
