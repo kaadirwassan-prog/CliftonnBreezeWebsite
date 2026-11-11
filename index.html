@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guest House in Clifton &amp; DHA Karachi | Clifton Breeze Guest House</title>
-<meta name="description" content="Clifton Breeze Guest House – clean, air-conditioned rooms and family suites in Clifton and DHA, Karachi. 24/7 front desk, WiFi, attached baths. Book online in 1 minute or call +92 300 0225347.">
+<meta name="description" content="Clifton Breeze Guest House – clean, air-conditioned rooms and family suites in Clifton and DHA, Karachi. Rooms from Rs 8,000 per night incl. tax, 24/7 front desk, WiFi. Book online in 1 minute or call +92 300 0225347.">
 <meta name="keywords" content="guest house in Clifton Karachi, guest house in DHA Karachi, guest house Karachi, family guest house Karachi, rooms in Clifton, rooms in Defence Karachi, Clifton Breeze Guest House">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://www.cliftonbreeze.com/">
@@ -33,6 +33,9 @@
   "description": "Guest house with air-conditioned rooms and family suites in Clifton and DHA, Karachi.",
   "url": "https://www.cliftonbreeze.com/",
   "telephone": "+923000225347",
+  "priceRange": "PKR 8,000 - 15,000 per night",
+  "currenciesAccepted": "PKR",
+  "checkoutTime": "12:00",
   "email": "cliftonbreezeguesthouse@gmail.com",
   "image": [
     "https://www.cliftonbreeze.com/images/guest-house-karachi-luxury-suite-1.jpg",
@@ -74,16 +77,18 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
+    { "@type": "Question", "name": "What are the room rates?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Deluxe Double Room is Rs 8,000 per night, Family Room is Rs 12,000 per night and Luxury Suite is Rs 15,000 per night. All prices include tax. An extra mattress is Rs 500 per night." } },
     { "@type": "Question", "name": "Where is Clifton Breeze Guest House located?",
       "acceptedAnswer": { "@type": "Answer", "text": "We have guest houses in two areas of Karachi: Clifton and DHA (Defence). Choose your preferred area when you book and we will send the exact location pin on WhatsApp." } },
     { "@type": "Question", "name": "How do I book a room?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Tap Book Now, choose your check-in and check-out dates and number of guests, and send the request. It reaches our booking desk on WhatsApp and we reply with availability and the rate. You can also call +92 300 0225347." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Tap Book Now, choose your check-in and check-out dates and number of guests, and send the request. It reaches our booking desk on WhatsApp and we reply to confirm availability. You can also call +92 300 0225347." } },
     { "@type": "Question", "name": "Do you have rooms for families?",
       "acceptedAnswer": { "@type": "Answer", "text": "Yes. Our family rooms have a double bed plus a single bed and a sitting area, and larger groups can book more than one room." } },
     { "@type": "Question", "name": "What is included in the rooms?",
       "acceptedAnswer": { "@type": "Answer", "text": "Rooms are air-conditioned with an attached bathroom, TV and WiFi. Selected rooms also have a mini fridge and a sitting area." } },
-    { "@type": "Question", "name": "What time can I check in?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Our front desk is open 24 hours. Tell us your arrival time in the booking request and we will have the room ready." } },
+    { "@type": "Question", "name": "What are the check-in and check-out times?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Check-out time is 12:00 PM (noon). Our front desk is open 24 hours, so tell us your arrival time in the booking request and we will have the room ready." } },
     { "@type": "Question", "name": "What do I need to bring at check-in?",
       "acceptedAnswer": { "@type": "Answer", "text": "Please bring an original CNIC or passport for every adult guest." } }
   ]
@@ -245,7 +250,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 .bk-h p{font-size:14px;opacity:.85}
 .x{position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:22px;line-height:1;cursor:pointer}
 .bk-b{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;padding:18px 22px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;align-content:start}
-.bk-foot{position:sticky;bottom:0;z-index:2;background:#fff;padding:10px 0 14px;margin-top:2px;box-shadow:0 -10px 12px -8px rgba(16,36,43,.14);display:grid;gap:8px}
+.bk-foot{position:sticky;bottom:0;z-index:2;background:#fff;padding:8px 0 12px;margin-top:2px;box-shadow:0 -10px 12px -8px rgba(16,36,43,.14);display:grid;gap:8px}
 .fld{min-width:0;border:0}
 .full{grid-column:1/-1}
 .seg{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -261,7 +266,23 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 .step button{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--teal);background:#fff;color:var(--teal);font-size:20px;line-height:1;cursor:pointer}
 .step button:disabled{opacity:.35;cursor:default}
 .step output{min-width:22px;text-align:center;font-weight:700;font-size:17px}
-.sum{background:var(--sand);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:14.5px}
+.seg.rt{grid-template-columns:repeat(3,1fr)}
+.seg.rt label{padding:9px 6px;line-height:1.3}
+.seg.rt label b{display:block;font-size:14.5px}
+.seg.rt label span{display:block;color:var(--teal-d);font-weight:700;font-size:15.5px}
+.seg.rt label small{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.hintline{font-size:12.5px;color:var(--muted);margin-top:4px}
+.price{background:var(--sand);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:14.5px}
+.price div{display:flex;justify-content:space-between;gap:12px;padding:2px 0}
+.price div span:last-child{white-space:nowrap;font-weight:600}
+.price .t{border-top:1px dashed #cfc5ae;margin-top:6px;padding-top:8px;font-weight:700;font-size:16px}
+.price .tip{display:block;color:#8a5a00;font-size:13px;margin-top:6px}
+.price .hint{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.tot{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.tot span{font-size:13px;color:var(--muted)}
+.tot b{font-size:1.3rem;color:var(--teal-d)}
+.card p.rate{color:var(--ink);font-size:15px}
+.card p.rate b{font:700 1.3rem Georgia,serif;color:var(--teal-d)}
 .err{color:#b3261e;font-size:14px;font-weight:600;min-height:0}
 .bk-b .btn{width:100%;padding:15px;font-size:17px}
 .note{font-size:13px;color:var(--muted);text-align:center}
@@ -378,13 +399,14 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
       <div class="sec-h">
         <div class="bar"></div>
         <h2>Rooms &amp; Suites</h2>
-        <p>Every room is air-conditioned with an attached bathroom, TV and WiFi. Tell us your dates and we will confirm the best available room and rate.</p>
+        <p>Every room is air-conditioned with an attached bathroom, TV and WiFi. Prices are per room per night and include tax. An extra mattress is Rs 500 per night, and check-out is at 12:00 PM.</p>
       </div>
       <div class="rooms">
         <article class="card">
           <img src="images/guest-house-karachi-deluxe-double-room-1.jpg" alt="Deluxe double room with AC at Clifton Breeze Guest House Karachi" width="1040" height="780" loading="lazy">
           <div class="card-b">
             <h3>Deluxe Double Room</h3>
+            <p class="rate"><b>Rs 8,000</b> / night · incl. tax</p>
             <p>A bright, spacious room with a double bed — ideal for couples and solo business travellers.</p>
             <ul class="tags"><li>Up to 2 guests</li><li>Double bed</li><li>AC</li><li>Attached bath</li></ul>
             <button class="btn btn-ghost btn-sm" data-book="Deluxe Double Room">Book this room</button>
@@ -394,8 +416,9 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
           <img src="images/guest-house-karachi-family-room-triple-1.jpg" alt="Family room with double and single bed in Karachi guest house" width="1280" height="960" loading="lazy">
           <div class="card-b">
             <h3>Family Room</h3>
+            <p class="rate"><b>Rs 12,000</b> / night · incl. tax</p>
             <p>A double bed plus a single bed and a sitting area — room for parents and children to stay together.</p>
-            <ul class="tags"><li>Up to 3–4 guests</li><li>Double + single</li><li>Sitting area</li><li>AC</li></ul>
+            <ul class="tags"><li>Up to 3 guests</li><li>Double + single</li><li>Sitting area</li><li>AC</li></ul>
             <button class="btn btn-ghost btn-sm" data-book="Family Room">Book this room</button>
           </div>
         </article>
@@ -403,6 +426,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
           <img src="images/guest-house-karachi-luxury-suite-2.jpg" alt="Luxury suite with sofa and TV at Clifton Breeze Guest House" width="640" height="640" loading="lazy">
           <div class="card-b">
             <h3>Luxury Suite</h3>
+            <p class="rate"><b>Rs 15,000</b> / night · incl. tax</p>
             <p>Our most stylish room: a king bed with feature lighting, wooden flooring, sofa seating and a wall-mounted TV.</p>
             <ul class="tags"><li>Up to 2 guests</li><li>King bed</li><li>Sofa seating</li><li>AC</li></ul>
             <button class="btn btn-ghost btn-sm" data-book="Luxury Suite">Book this room</button>
@@ -504,9 +528,9 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
         <p>No account and no advance payment online — just send your request.</p>
       </div>
       <ol class="steps">
-        <li><h3>Choose dates &amp; guests</h3><p>Tap Book Now and pick your location, check-in and check-out dates and who is travelling.</p></li>
+        <li><h3>Choose dates &amp; guests</h3><p>Tap Book Now and pick your location, dates, room type and guests. The total in PKR updates as you choose.</p></li>
         <li><h3>Send the request</h3><p>Your details open as a ready-made WhatsApp message to our booking desk. Just press send.</p></li>
-        <li><h3>Get confirmation</h3><p>We reply with availability, the room rate and the exact location pin.</p></li>
+        <li><h3>Get confirmation</h3><p>We confirm availability and send the exact location pin. You see the total price before you send.</p></li>
       </ol>
       <div class="center"><button class="btn btn-gold" data-book>Start Your Booking</button></div>
     </div>
@@ -519,11 +543,12 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
         <h2>Frequently Asked Questions</h2>
       </div>
       <div class="faq">
-        <details open><summary>Where is Clifton Breeze Guest House located?</summary><p>We have guest houses in two areas of Karachi: Clifton and DHA (Defence). Choose your preferred area when you book and we will send the exact location pin on WhatsApp.</p></details>
-        <details><summary>How do I book a room?</summary><p>Tap Book Now, choose your check-in and check-out dates and number of guests, and send the request. It reaches our booking desk on WhatsApp and we reply with availability and the rate. You can also call +92 300 0225347.</p></details>
+        <details open><summary>What are the room rates?</summary><p>Deluxe Double Room is Rs 8,000 per night, Family Room is Rs 12,000 per night and Luxury Suite is Rs 15,000 per night. All prices include tax. An extra mattress is Rs 500 per night.</p></details>
+        <details><summary>Where is Clifton Breeze Guest House located?</summary><p>We have guest houses in two areas of Karachi: Clifton and DHA (Defence). Choose your preferred area when you book and we will send the exact location pin on WhatsApp.</p></details>
+        <details><summary>How do I book a room?</summary><p>Tap Book Now, choose your check-in and check-out dates and number of guests, and send the request. It reaches our booking desk on WhatsApp and we reply to confirm availability. You can also call +92 300 0225347.</p></details>
         <details><summary>Do you have rooms for families?</summary><p>Yes. Our family rooms have a double bed plus a single bed and a sitting area, and larger groups can book more than one room.</p></details>
         <details><summary>What is included in the rooms?</summary><p>Rooms are air-conditioned with an attached bathroom, TV and WiFi. Selected rooms also have a mini fridge and a sitting area.</p></details>
-        <details><summary>What time can I check in?</summary><p>Our front desk is open 24 hours. Tell us your arrival time in the booking request and we will have the room ready.</p></details>
+        <details><summary>What are the check-in and check-out times?</summary><p>Check-out time is 12:00 PM (noon). Our front desk is open 24 hours, so tell us your arrival time in the booking request and we will have the room ready.</p></details>
         <details><summary>What do I need to bring at check-in?</summary><p>Please bring an original CNIC or passport for every adult guest.</p></details>
       </div>
     </div>
@@ -612,7 +637,16 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
     <div class="fld">
       <label for="bOut">Check-out</label>
       <input type="date" id="bOut" required>
+      <p class="hintline">Check-out time: 12:00 PM</p>
     </div>
+    <fieldset class="fld full">
+      <legend>Room type · price per night incl. tax</legend>
+      <div class="seg rt">
+        <input type="radio" name="room" id="rD" value="Deluxe Double Room" checked><label for="rD"><b>Deluxe</b><span>Rs 8,000</span><small>up to 2 guests</small></label>
+        <input type="radio" name="room" id="rF" value="Family Room"><label for="rF"><b>Family</b><span>Rs 12,000</span><small>up to 3 guests</small></label>
+        <input type="radio" name="room" id="rL" value="Luxury Suite"><label for="rL"><b>Luxury Suite</b><span>Rs 15,000</span><small>up to 2 guests</small></label>
+      </div>
+    </fieldset>
     <fieldset class="fld full">
       <legend>Guests &amp; rooms</legend>
       <div class="guests">
@@ -620,20 +654,10 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
         <div class="step"><span>Adults – female</span><div><button type="button" data-s="n_female" data-d="-1" aria-label="Fewer female adults">−</button><output id="n_female">0</output><button type="button" data-s="n_female" data-d="1" aria-label="More female adults">+</button></div></div>
         <div class="step"><span>Children<small>under 12</small></span><div><button type="button" data-s="n_kids" data-d="-1" aria-label="Fewer children">−</button><output id="n_kids">0</output><button type="button" data-s="n_kids" data-d="1" aria-label="More children">+</button></div></div>
         <div class="step"><span>Rooms</span><div><button type="button" data-s="n_rooms" data-d="-1" aria-label="Fewer rooms">−</button><output id="n_rooms">1</output><button type="button" data-s="n_rooms" data-d="1" aria-label="More rooms">+</button></div></div>
+        <div class="step"><span>Extra mattress<small>Rs 500 each / night</small></span><div><button type="button" data-s="n_mat" data-d="-1" aria-label="Fewer extra mattresses">−</button><output id="n_mat">0</output><button type="button" data-s="n_mat" data-d="1" aria-label="More extra mattresses">+</button></div></div>
       </div>
     </fieldset>
-    <div class="fld">
-      <label for="bType">Travelling as</label>
-      <select id="bType">
-        <option>Family</option><option>Couple</option><option>Business</option><option>Friends</option><option>Solo</option>
-      </select>
-    </div>
-    <div class="fld">
-      <label for="bRoom">Room type</label>
-      <select id="bRoom">
-        <option>Any available</option><option>Deluxe Double Room</option><option>Family Room</option><option>Luxury Suite</option>
-      </select>
-    </div>
+    <div class="price full" id="bPrice" aria-live="polite"></div>
     <div class="fld">
       <label for="bName">Your name</label>
       <input type="text" id="bName" autocomplete="name" required>
@@ -642,21 +666,26 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
       <label for="bPhone">Phone (optional)</label>
       <input type="tel" id="bPhone" autocomplete="tel" inputmode="tel" placeholder="03xx xxxxxxx">
     </div>
-    <div class="fld full">
-      <label for="bNote">Special request (optional)</label>
-      <textarea id="bNote" rows="2" placeholder="Arrival time, extra mattress, ground floor…"></textarea>
+    <div class="fld">
+      <label for="bType">Travelling as</label>
+      <select id="bType">
+        <option>Family</option><option>Couple</option><option>Business</option><option>Friends</option><option>Solo</option>
+      </select>
     </div>
-    <div class="sum full" id="bSum" hidden></div>
+    <div class="fld">
+      <label for="bNote">Special request</label>
+      <input type="text" id="bNote" placeholder="Arrival time, ground floor…">
+    </div>
     <div class="bk-foot full">
       <p class="err" id="bErr" role="alert"></p>
+      <div class="tot"><span id="bTotL">Per night · incl. tax</span><b id="bTot">Rs 8,000</b></div>
       <button class="btn btn-wa" type="submit"><svg class="i"><use href="#i-chat"/></svg>Send Booking Request</button>
-      <p class="note">Opens in WhatsApp — press send there and we will confirm availability and the rate.</p>
     </div>
   </form>
   <div class="done">
     <div class="tick">✓</div>
     <h3>Almost done!</h3>
-    <p>WhatsApp has opened with your booking details. Press <b>Send</b> there and our team will confirm shortly.</p>
+    <p>WhatsApp has opened with your booking details and total price. Press <b>Send</b> there and our team will confirm availability shortly.</p>
     <p><a class="btn btn-wa" id="bLink" href="#" target="_blank" rel="noopener">WhatsApp didn't open? Tap here</a></p>
     <p>Or call <a href="tel:+923000225347"><b>+92 300 0225347</b></a></p>
     <button class="btn btn-ghost btn-sm" type="button" data-close>Close</button>
@@ -674,15 +703,23 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 <script>
 (function(){
   var WA = '923000225347';
+  var RATES = { 'Deluxe Double Room': { price: 8000, cap: 2 }, 'Family Room': { price: 12000, cap: 3 }, 'Luxury Suite': { price: 15000, cap: 2 } };
+  var MATTRESS = 500;
   var $ = function(id){ return document.getElementById(id); };
   var bk = $('bk'), form = $('bkF'), bIn = $('bIn'), bOut = $('bOut'), qIn = $('qIn'), qOut = $('qOut');
-  var limits = { n_male:[0,12], n_female:[0,12], n_kids:[0,10], n_rooms:[1,8] };
+  var limits = { n_male:[0,12], n_female:[0,12], n_kids:[0,10], n_rooms:[1,8], n_mat:[0,6] };
 
   function iso(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
   function addDays(s, n){ var d = new Date(s + 'T00:00'); d.setDate(d.getDate() + n); return iso(d); }
   function nice(s){ return new Date(s + 'T00:00').toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short', year:'numeric' }); }
-  function nights(){ return (bIn.value && bOut.value) ? Math.round((new Date(bOut.value + 'T00:00') - new Date(bIn.value + 'T00:00')) / 864e5) : 0; }
+  function nights(){
+    if (!bIn.value || !bOut.value) return 0;
+    var n = Math.round((new Date(bOut.value + 'T00:00') - new Date(bIn.value + 'T00:00')) / 864e5);
+    return n > 0 ? n : 0;
+  }
   function val(id){ return parseInt($(id).textContent, 10); }
+  function rs(n){ return 'Rs ' + n.toLocaleString('en-US'); }
+  function pl(n, w){ return n + ' ' + w + (n === 1 ? '' : 's'); }
 
   var today = iso(new Date());
   $('yr').textContent = new Date().getFullYear();
@@ -691,46 +728,64 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
   function pair(i, o){
     i.min = today;
     function sync(){
-      var from = i.value || today;
-      o.min = addDays(from, 1);
+      o.min = addDays(i.value || today, 1);
       if (i.value && (!o.value || o.value <= i.value)) o.value = addDays(i.value, 1);
     }
-    i.addEventListener('change', function(){ sync(); summary(); });
-    o.addEventListener('change', summary);
+    i.addEventListener('input', sync);
+    i.addEventListener('change', sync);
     sync();
   }
   pair(qIn, qOut); pair(bIn, bOut);
 
-  function summary(){
-    var n = nights(), s = $('bSum');
-    if (n > 0){
-      var g = val("n_male") + val("n_female"), k = val("n_kids");
-      s.hidden = false;
-      s.textContent = n + (n === 1 ? ' night' : ' nights') + ' · ' + g + (g === 1 ? ' adult' : ' adults') + (k ? ', ' + k + (k === 1 ? ' child' : ' children') : '') + ' · ' + val("n_rooms") + (val("n_rooms") === 1 ? ' room' : ' rooms');
-    } else s.hidden = true;
+  function quote(){
+    var room = form.querySelector('input[name=room]:checked').value, r = RATES[room];
+    var n = nights(), per = n || 1, rooms = val('n_rooms'), mat = val('n_mat');
+    var q = { room: room, rate: r.price, cap: r.cap, nights: n, rooms: rooms, mat: mat };
+    q.roomTotal = r.price * rooms * per;
+    q.matTotal = MATTRESS * mat * per;
+    q.total = q.roomTotal + q.matTotal;
+    q.guests = val('n_male') + val('n_female') + val('n_kids');
+    return q;
   }
 
-  function steppers(){
+  // redraw price and buttons on every change
+  function render(){
     form.querySelectorAll('[data-s]').forEach(function(b){
       var id = b.dataset.s, v = val(id), d = +b.dataset.d;
       b.disabled = (d < 0 && v <= limits[id][0]) || (d > 0 && v >= limits[id][1]);
     });
+    var q = quote(), per = ' × ' + pl(q.nights || 1, 'night');
+    var h = '<div><span>' + q.room + ' · ' + pl(q.rooms, 'room') + per + '</span><span>' + rs(q.roomTotal) + '</span></div>';
+    if (q.mat) h += '<div><span>Extra mattress · ' + q.mat + per + '</span><span>' + rs(q.matTotal) + '</span></div>';
+    h += '<div class="t"><span>' + (q.nights ? 'Total for ' + pl(q.nights, 'night') : 'Total per night') + ' (incl. tax)</span><span>' + rs(q.total) + '</span></div>';
+    if (!q.nights) h += '<span class="hint">Choose your dates to see the full total.</span>';
+    if (q.guests > q.cap * q.rooms + q.mat) h += '<span class="tip">' + pl(q.guests, 'guest') + ': this room sleeps ' + q.cap + ' per room. Add a room or an extra mattress.</span>';
+    $('bPrice').innerHTML = h;
+    $('bTot').textContent = rs(q.total);
+    $('bTotL').textContent = q.nights ? pl(q.nights, 'night') + ' · ' + pl(q.rooms, 'room') + ' · incl. tax' : 'Per night · incl. tax';
+    if ($('bErr').textContent) $('bErr').textContent = '';
   }
+  form.addEventListener('input', render);
+  form.addEventListener('change', render);
   form.addEventListener('click', function(e){
     var b = e.target.closest('[data-s]'); if (!b) return;
     var id = b.dataset.s, v = val(id) + (+b.dataset.d);
     $(id).textContent = Math.max(limits[id][0], Math.min(limits[id][1], v));
-    steppers(); summary();
+    render();
   });
 
   function openBooking(opt){
     opt = opt || {};
-    bk.classList.remove('sent'); $('bErr').textContent = '';
+    bk.classList.remove('sent');
     if (opt.loc){ var r = form.querySelector('input[name=loc][value="' + opt.loc + '"]'); if (r) r.checked = true; }
-    if (opt.room) $('bRoom').value = opt.room;
-    if (opt.cin){ bIn.value = opt.cin; bIn.dispatchEvent(new Event('change')); }
+    if (opt.room){ var t = form.querySelector('input[name=room][value="' + opt.room + '"]'); if (t) t.checked = true; }
+    if (opt.cin) bIn.value = opt.cin;
+    if (!bIn.value) bIn.value = today;
+    bOut.min = addDays(bIn.value, 1);
     if (opt.cout && opt.cout > bIn.value) bOut.value = opt.cout;
-    steppers(); summary();
+    if (!bOut.value || bOut.value <= bIn.value) bOut.value = addDays(bIn.value, 1);
+    render();
+    $('bErr').textContent = '';
     bk.showModal();
   }
 
@@ -748,15 +803,15 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    var err = $('bErr'), name = $('bName').value.trim(), m = val("n_male"), f = val("n_female"), k = val("n_kids");
+    var name = $('bName').value.trim(), m = val('n_male'), f = val('n_female'), k = val('n_kids'), q = quote();
     var msg = '';
     if (!bIn.value) msg = 'Please choose your check-in date.';
     else if (!bOut.value) msg = 'Please choose your check-out date.';
     else if (bIn.value < today) msg = 'Check-in date cannot be in the past.';
-    else if (nights() < 1) msg = 'Check-out must be after check-in.';
+    else if (q.nights < 1) msg = 'Check-out must be after check-in.';
     else if (m + f < 1) msg = 'Please add at least one adult.';
     else if (!name) msg = 'Please enter your name.';
-    err.textContent = msg;
+    $('bErr').textContent = msg;
     if (msg) return;
 
     var loc = form.querySelector('input[name=loc]:checked').value;
@@ -765,19 +820,22 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
       '',
       'Location: ' + (loc === 'Any' ? 'Clifton or DHA (either)' : loc),
       'Check-in: ' + nice(bIn.value),
-      'Check-out: ' + nice(bOut.value),
-      'Nights: ' + nights(),
-      'Rooms: ' + val("n_rooms"),
-      'Room type: ' + $('bRoom').value,
+      'Check-out: ' + nice(bOut.value) + ' (by 12:00 PM)',
+      'Nights: ' + q.nights,
+      'Room: ' + q.room + ' × ' + q.rooms,
       'Adults: ' + (m + f) + ' (' + m + ' male, ' + f + ' female)',
       'Children: ' + k,
+      'Extra mattress: ' + q.mat,
       'Travelling as: ' + $('bType').value,
       'Name: ' + name
     ];
     var phone = $('bPhone').value.trim(), note = $('bNote').value.trim();
     if (phone) lines.push('Phone: ' + phone);
     if (note) lines.push('Request: ' + note);
-    lines.push('', 'Please confirm availability and rate.');
+    lines.push('', '*Price (incl. tax)*',
+      'Rooms: ' + rs(q.rate) + ' × ' + pl(q.rooms, 'room') + ' × ' + pl(q.nights, 'night') + ' = ' + rs(q.roomTotal));
+    if (q.mat) lines.push('Extra mattress: ' + rs(MATTRESS) + ' × ' + q.mat + ' × ' + pl(q.nights, 'night') + ' = ' + rs(q.matTotal));
+    lines.push('*Total: ' + rs(q.total) + '*', '', 'Please confirm availability.');
 
     var url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(lines.join('\n'));
     $('bLink').href = url;
