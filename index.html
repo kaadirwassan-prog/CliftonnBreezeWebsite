@@ -238,17 +238,19 @@ footer a:hover{color:var(--gold-l)}
 /* dialogs */
 dialog{border:0;padding:0;color:var(--ink)}
 dialog::backdrop{background:rgba(6,28,32,.7)}
-#bk{width:min(600px,100% - 20px);max-height:calc(100dvh - 20px);border-radius:18px;margin:auto;overflow:auto;box-shadow:0 30px 80px rgba(0,0,0,.4)}
-.bk-h{position:sticky;top:0;z-index:2;background:var(--teal-d);color:#fff;padding:18px 56px 16px 22px}
+#bk{width:min(600px,100% - 20px);max-height:calc(100dvh - 20px);border-radius:18px;margin:auto;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+#bk[open]{display:flex;flex-direction:column}
+.bk-h{position:relative;flex:none;background:var(--teal-d);color:#fff;padding:16px 56px 14px 22px}
 .bk-h h2{font-size:1.35rem}
 .bk-h p{font-size:14px;opacity:.85}
 .x{position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:22px;line-height:1;cursor:pointer}
-.bk-b{padding:20px 22px 22px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bk-b{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;padding:18px 22px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;align-content:start}
+.bk-foot{position:sticky;bottom:0;z-index:2;background:#fff;padding:10px 0 14px;margin-top:2px;box-shadow:0 -10px 12px -8px rgba(16,36,43,.14);display:grid;gap:8px}
 .fld{min-width:0;border:0}
 .full{grid-column:1/-1}
-.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .seg label{margin:0;text-transform:none;letter-spacing:0;font-size:15px;font-weight:600;color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:11px 10px;text-align:center;cursor:pointer}
-.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg input{position:absolute;left:0;top:0;width:1px;height:1px;min-height:0;padding:0;border:0;opacity:0;pointer-events:none}
 .seg input:checked+label{border-color:var(--teal);background:#e8f3f3;color:var(--teal-d)}
 .seg input:focus-visible+label{outline:3px solid var(--gold-l)}
 .guests{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -263,7 +265,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 .err{color:#b3261e;font-size:14px;font-weight:600;min-height:0}
 .bk-b .btn{width:100%;padding:15px;font-size:17px}
 .note{font-size:13px;color:var(--muted);text-align:center}
-.done{padding:34px 24px;text-align:center;display:none}
+.done{padding:34px 24px;text-align:center;display:none;overflow-y:auto}
 .done h3{font-size:1.5rem;margin:10px 0}
 .done p{color:var(--muted);margin-bottom:18px}
 .done .tick{width:64px;height:64px;border-radius:50%;background:#e2f5e9;color:var(--wa);display:grid;place-items:center;margin:0 auto;font-size:34px}
@@ -291,7 +293,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
   .sec{padding:48px 0}
   .rooms,.steps,.locs{grid-template-columns:1fr}
   .gal{columns:2;column-gap:10px}.gal button{margin-bottom:10px}
-  .bk-b{grid-template-columns:1fr 1fr;padding:16px}
+  .bk-b{grid-template-columns:1fr 1fr;padding:14px 16px 0}
   .guests{grid-template-columns:1fr}
   body{padding-bottom:64px}
   .mbar{display:grid;grid-template-columns:1fr 1fr 1.4fr;position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;box-shadow:0 -4px 18px rgba(0,0,0,.16);padding:8px;gap:8px;padding-bottom:calc(8px + env(safe-area-inset-bottom))}
@@ -645,9 +647,11 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
       <textarea id="bNote" rows="2" placeholder="Arrival time, extra mattress, ground floor…"></textarea>
     </div>
     <div class="sum full" id="bSum" hidden></div>
-    <p class="err full" id="bErr" role="alert"></p>
-    <button class="btn btn-wa full" type="submit"><svg class="i"><use href="#i-chat"/></svg>Send Booking Request</button>
-    <p class="note full">Your request opens in WhatsApp — press send there and we will confirm availability and the rate.</p>
+    <div class="bk-foot full">
+      <p class="err" id="bErr" role="alert"></p>
+      <button class="btn btn-wa" type="submit"><svg class="i"><use href="#i-chat"/></svg>Send Booking Request</button>
+      <p class="note">Opens in WhatsApp — press send there and we will confirm availability and the rate.</p>
+    </div>
   </form>
   <div class="done">
     <div class="tick">✓</div>
@@ -778,7 +782,6 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
     var url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(lines.join('\n'));
     $('bLink').href = url;
     bk.classList.add('sent');
-    bk.scrollTop = 0;
     window.open(url, '_blank', 'noopener');
   });
 
