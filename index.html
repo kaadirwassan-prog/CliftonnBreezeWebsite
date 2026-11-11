@@ -641,6 +641,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
       <input type="date" id="bOut" required>
       <p class="hintline">Check-out time: 12:00 PM</p>
     </div>
+    <div class="step full"><span>Nights<small>changes your check-out date</small></span><div><button type="button" data-s="n_nights" data-d="-1" aria-label="Fewer nights">−</button><output id="n_nights">1</output><button type="button" data-s="n_nights" data-d="1" aria-label="More nights">+</button></div></div>
     <fieldset class="fld full">
       <legend>Room type · price per night incl. tax</legend>
       <div class="seg rt">
@@ -709,8 +710,9 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
   var MATTRESS = 1000, MAXMAT = 2; // price per mattress per night, and the most mattresses one room can take
   var $ = function(id){ return document.getElementById(id); };
   var bk = $('bk'), form = $('bkF'), bIn = $('bIn'), bOut = $('bOut'), qIn = $('qIn'), qOut = $('qOut');
-  var limits = { n_male:[0,12], n_female:[0,12], n_kids:[0,10], n_rooms:[1,12], n_mat:[0,24] };
+  var limits = { n_male:[0,12], n_female:[0,12], n_kids:[0,10], n_rooms:[1,12], n_mat:[0,24], n_nights:[1,60] };
   var extra = 0;       // mattresses the guest added on top of the automatic ones
+  var stay = 0;        // nights currently selected, kept when the check-in date moves
   var roomsWanted = 1; // rooms the guest asked for; more are added when the guests do not fit
 
   function iso(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
@@ -735,7 +737,8 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
     i.min = today; i.max = addDays(today, 365);
     function sync(){
       o.min = addDays(i.value || today, 1);
-      if (i.value && (!o.value || o.value <= i.value)) o.value = addDays(i.value, 1);
+      if (i === bIn && i.value && stay) o.value = addDays(i.value, stay);
+      else if (i.value && (!o.value || o.value <= i.value)) o.value = addDays(i.value, 1);
     }
     i.addEventListener('input', sync);
     i.addEventListener('change', sync);
@@ -766,6 +769,8 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
     var cap = sleeps * rooms, maxMat = MAXMAT * rooms, auto = Math.min(maxMat, Math.max(0, guests - cap));
     extra = Math.max(0, Math.min(extra, maxMat - auto));
     $('n_mat').textContent = auto + extra;
+    stay = nights();
+    $('n_nights').textContent = stay || 1;
     form.querySelectorAll('[data-s]').forEach(function(b){
       var id = b.dataset.s, d = +b.dataset.d, v = val(id);
       if (id === 'n_mat') b.disabled = d < 0 ? extra <= 0 : auto + extra >= maxMat;
@@ -790,7 +795,12 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
     var b = e.target.closest('[data-s]'); if (!b) return;
     var id = b.dataset.s, v = (id === 'n_mat' ? extra : val(id)) + (+b.dataset.d);
     v = Math.max(limits[id][0], Math.min(limits[id][1], v));
-    if (id === 'n_mat') extra = v; else if (id === 'n_rooms') roomsWanted = v; else $(id).textContent = v;
+    if (id === 'n_nights') {
+      if (!bIn.value) bIn.value = today;
+      bOut.min = addDays(bIn.value, 1);
+      bOut.value = addDays(bIn.value, v);
+    }
+    else if (id === 'n_mat') extra = v; else if (id === 'n_rooms') roomsWanted = v; else $(id).textContent = v;
     render();
   });
 
