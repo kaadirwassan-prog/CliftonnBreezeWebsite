@@ -80,7 +80,7 @@
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "What are the room rates?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Deluxe Double Room is Rs 8,000 per night, Family Room is Rs 12,000 per night and Luxury Suite is Rs 15,000 per night. All prices include tax. An extra mattress is Rs 500 per night." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Deluxe Double Room is Rs 8,000 per night, Family Room is Rs 12,000 per night and Luxury Suite is Rs 15,000 per night. All prices include tax. An extra mattress is Rs 1,000 per night, with a maximum of 2 per room." } },
     { "@type": "Question", "name": "Where is Clifton Breeze Guest House located?",
       "acceptedAnswer": { "@type": "Answer", "text": "We have guest houses in two areas of Karachi: Clifton and DHA (Defence). Choose your preferred area when you book and we will send the exact location pin on WhatsApp." } },
     { "@type": "Question", "name": "How do I book a room?",
@@ -401,7 +401,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
       <div class="sec-h">
         <div class="bar"></div>
         <h2>Rooms &amp; Suites</h2>
-        <p>Every room is air-conditioned with an attached bathroom, TV and WiFi. Prices are per room per night and include tax. An extra mattress is Rs 500 per night, and check-out is at 12:00 PM.</p>
+        <p>Every room is air-conditioned with an attached bathroom, TV and WiFi. Prices are per room per night and include tax. An extra mattress is Rs 1,000 per night (maximum 2 per room), and check-out is at 12:00 PM.</p>
       </div>
       <div class="rooms">
         <article class="card">
@@ -545,7 +545,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
         <h2>Frequently Asked Questions</h2>
       </div>
       <div class="faq">
-        <details open><summary>What are the room rates?</summary><p>Deluxe Double Room is Rs 8,000 per night, Family Room is Rs 12,000 per night and Luxury Suite is Rs 15,000 per night. All prices include tax. An extra mattress is Rs 500 per night.</p></details>
+        <details open><summary>What are the room rates?</summary><p>Deluxe Double Room is Rs 8,000 per night, Family Room is Rs 12,000 per night and Luxury Suite is Rs 15,000 per night. All prices include tax. An extra mattress is Rs 1,000 per night, with a maximum of 2 per room.</p></details>
         <details><summary>Where is Clifton Breeze Guest House located?</summary><p>We have guest houses in two areas of Karachi: Clifton and DHA (Defence). Choose your preferred area when you book and we will send the exact location pin on WhatsApp.</p></details>
         <details><summary>How do I book a room?</summary><p>Tap Book Now, choose your check-in and check-out dates and number of guests, and send the request. It reaches our booking desk on WhatsApp and we reply to confirm availability. You can also call +92 300 0225347.</p></details>
         <details><summary>Do you have rooms for families?</summary><p>Yes. Our family rooms have a double bed plus a single bed and a sitting area, and larger groups can book more than one room.</p></details>
@@ -656,7 +656,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
         <div class="step"><span>Adults – female</span><div><button type="button" data-s="n_female" data-d="-1" aria-label="Fewer female adults">−</button><output id="n_female">0</output><button type="button" data-s="n_female" data-d="1" aria-label="More female adults">+</button></div></div>
         <div class="step"><span>Children<small>under 12</small></span><div><button type="button" data-s="n_kids" data-d="-1" aria-label="Fewer children">−</button><output id="n_kids">0</output><button type="button" data-s="n_kids" data-d="1" aria-label="More children">+</button></div></div>
         <div class="step"><span>Rooms</span><div><button type="button" data-s="n_rooms" data-d="-1" aria-label="Fewer rooms">−</button><output id="n_rooms">1</output><button type="button" data-s="n_rooms" data-d="1" aria-label="More rooms">+</button></div></div>
-        <div class="step"><span>Extra mattress<small>Rs 500 each / night · auto-added for extra guests</small></span><div><button type="button" data-s="n_mat" data-d="-1" aria-label="Fewer extra mattresses">−</button><output id="n_mat">0</output><button type="button" data-s="n_mat" data-d="1" aria-label="More extra mattresses">+</button></div></div>
+        <div class="step"><span>Extra mattress<small>Rs 1,000 each / night · max 2 per room</small></span><div><button type="button" data-s="n_mat" data-d="-1" aria-label="Fewer extra mattresses">−</button><output id="n_mat">0</output><button type="button" data-s="n_mat" data-d="1" aria-label="More extra mattresses">+</button></div></div>
       </div>
     </fieldset>
     <div class="price full" id="bPrice" aria-live="polite"></div>
@@ -706,11 +706,12 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 (function(){
   var WA = '923000225347';
   var RATES = { 'Deluxe Double Room': { price: 8000, cap: 2 }, 'Family Room': { price: 12000, cap: 3 }, 'Luxury Suite': { price: 15000, cap: 2 } };
-  var MATTRESS = 500;
+  var MATTRESS = 1000, MAXMAT = 2; // price per mattress per night, and the most mattresses one room can take
   var $ = function(id){ return document.getElementById(id); };
   var bk = $('bk'), form = $('bkF'), bIn = $('bIn'), bOut = $('bOut'), qIn = $('qIn'), qOut = $('qOut');
-  var limits = { n_male:[0,12], n_female:[0,12], n_kids:[0,10], n_rooms:[1,8], n_mat:[0,6] };
-  var extra = 0; // mattresses the guest added on top of the automatic ones
+  var limits = { n_male:[0,12], n_female:[0,12], n_kids:[0,10], n_rooms:[1,12], n_mat:[0,24] };
+  var extra = 0;       // mattresses the guest added on top of the automatic ones
+  var roomsWanted = 1; // rooms the guest asked for; more are added when the guests do not fit
 
   function iso(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
   function addDays(s, n){ var d = new Date(s + 'T00:00'); d.setDate(d.getDate() + n); return iso(d); }
@@ -755,13 +756,21 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 
   // redraw price and buttons on every change
   function render(){
-    // one mattress is added automatically for every guest above the rooms' capacity
-    var cap = RATES[form.querySelector('input[name=room]:checked').value].cap * val('n_rooms');
-    var auto = Math.max(0, val('n_male') + val('n_female') + val('n_kids') - cap);
+    // every guest above a room's capacity gets a mattress, at most MAXMAT per room;
+    // when the guests still do not fit, rooms are added
+    var sleeps = RATES[form.querySelector('input[name=room]:checked').value].cap;
+    var guests = val('n_male') + val('n_female') + val('n_kids');
+    var minRooms = Math.max(1, Math.ceil(guests / (sleeps + MAXMAT)));
+    var rooms = Math.min(limits.n_rooms[1], Math.max(roomsWanted, minRooms));
+    $('n_rooms').textContent = rooms;
+    var cap = sleeps * rooms, maxMat = MAXMAT * rooms, auto = Math.min(maxMat, Math.max(0, guests - cap));
+    extra = Math.max(0, Math.min(extra, maxMat - auto));
     $('n_mat').textContent = auto + extra;
     form.querySelectorAll('[data-s]').forEach(function(b){
-      var id = b.dataset.s, v = id === 'n_mat' ? extra : val(id), d = +b.dataset.d;
-      b.disabled = (d < 0 && v <= limits[id][0]) || (d > 0 && v >= limits[id][1]);
+      var id = b.dataset.s, d = +b.dataset.d, v = val(id);
+      if (id === 'n_mat') b.disabled = d < 0 ? extra <= 0 : auto + extra >= maxMat;
+      else if (id === 'n_rooms') b.disabled = d < 0 ? rooms <= minRooms : rooms >= limits.n_rooms[1];
+      else b.disabled = (d < 0 && v <= limits[id][0]) || (d > 0 && v >= limits[id][1]);
     });
     var q = quote(), per = ' × ' + pl(q.nights || 1, 'night');
     var h = '<div><span>' + q.room + ' · ' + pl(q.rooms, 'room') + per + '</span><span>' + rs(q.roomTotal) + '</span></div>';
@@ -769,7 +778,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
     h += '<div class="t"><span>' + (q.nights ? 'Total for ' + pl(q.nights, 'night') : 'Total per night') + ' (incl. tax)</span><span>' + rs(q.total) + '</span></div>';
     if (!q.nights) h += '<span class="hint">Choose your dates to see the full total.</span>';
     if (auto) h += '<span class="tip">' + (auto === 1 ? '1 extra mattress' : auto + ' extra mattresses') + ' added automatically: ' + pl(q.guests, 'guest') + ', but ' + pl(q.rooms, 'room') + (q.rooms === 1 ? ' sleeps ' : ' sleep ') + cap + '.</span>';
-    if (q.mat > 2 * q.rooms) h += '<span class="hint">Tip: adding another room may be more comfortable.</span>';
+    if (minRooms > 1 && rooms === minRooms) h += '<span class="tip">' + pl(guests, 'guest') + ' need at least ' + pl(minRooms, 'room') + ' (maximum ' + MAXMAT + ' extra mattresses per room).</span>';
     $('bPrice').innerHTML = h;
     $('bTot').textContent = rs(q.total);
     $('bTotL').textContent = q.nights ? pl(q.nights, 'night') + ' · ' + pl(q.rooms, 'room') + ' · incl. tax' : 'Per night · incl. tax';
@@ -781,7 +790,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
     var b = e.target.closest('[data-s]'); if (!b) return;
     var id = b.dataset.s, v = (id === 'n_mat' ? extra : val(id)) + (+b.dataset.d);
     v = Math.max(limits[id][0], Math.min(limits[id][1], v));
-    if (id === 'n_mat') extra = v; else $(id).textContent = v;
+    if (id === 'n_mat') extra = v; else if (id === 'n_rooms') roomsWanted = v; else $(id).textContent = v;
     render();
   });
 
