@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Guest House in Clifton &amp; DHA Karachi | Clifton Breeze Guest House</title>
 <meta name="description" content="Clifton Breeze Guest House – clean, air-conditioned rooms and family suites in Clifton and DHA, Karachi. Rooms from Rs 8,000 per night incl. tax, 24/7 front desk, WiFi. Book online in 1 minute or call +92 300 0225347.">
 <meta name="keywords" content="guest house in Clifton Karachi, guest house in DHA Karachi, guest house Karachi, family guest house Karachi, rooms in Clifton, rooms in Defence Karachi, Clifton Breeze Guest House">
@@ -567,7 +569,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
         </ul>
         <div class="cbtns">
           <button class="btn btn-gold" data-book>Book Now</button>
-          <a class="btn btn-wa" href="https://wa.me/923000225347" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>WhatsApp</a>
+          <a class="btn btn-wa" href="https://wa.me/923000225347" target="_blank" rel="noopener noreferrer"><svg class="i"><use href="#i-chat"/></svg>WhatsApp</a>
           <a class="btn btn-ghost" href="tel:+923000225347"><svg class="i"><use href="#i-phone"/></svg>Call</a>
         </div>
       </div>
@@ -598,9 +600,9 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
         <h3>Get in touch</h3>
         <ul>
           <li><a href="tel:+923000225347">+92 300 0225347</a></li>
-          <li><a href="https://wa.me/923000225347" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a href="https://facebook.com/cliftonbreezekhi" target="_blank" rel="noopener">Facebook</a></li>
-          <li><a href="https://www.tiktok.com/@cliftonbreeze" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://wa.me/923000225347" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="https://facebook.com/cliftonbreezekhi" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="https://www.tiktok.com/@cliftonbreeze" target="_blank" rel="noopener noreferrer">TikTok</a></li>
         </ul>
       </div>
     </div>
@@ -610,7 +612,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 
 <div class="mbar">
   <a class="btn btn-ghost" href="tel:+923000225347"><svg class="i"><use href="#i-phone"/></svg>Call</a>
-  <a class="btn btn-wa" href="https://wa.me/923000225347" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Chat</a>
+  <a class="btn btn-wa" href="https://wa.me/923000225347" target="_blank" rel="noopener noreferrer"><svg class="i"><use href="#i-chat"/></svg>Chat</a>
   <button class="btn btn-gold" data-book>Book Now</button>
 </div>
 
@@ -654,17 +656,17 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
         <div class="step"><span>Adults – female</span><div><button type="button" data-s="n_female" data-d="-1" aria-label="Fewer female adults">−</button><output id="n_female">0</output><button type="button" data-s="n_female" data-d="1" aria-label="More female adults">+</button></div></div>
         <div class="step"><span>Children<small>under 12</small></span><div><button type="button" data-s="n_kids" data-d="-1" aria-label="Fewer children">−</button><output id="n_kids">0</output><button type="button" data-s="n_kids" data-d="1" aria-label="More children">+</button></div></div>
         <div class="step"><span>Rooms</span><div><button type="button" data-s="n_rooms" data-d="-1" aria-label="Fewer rooms">−</button><output id="n_rooms">1</output><button type="button" data-s="n_rooms" data-d="1" aria-label="More rooms">+</button></div></div>
-        <div class="step"><span>Extra mattress<small>Rs 500 each / night</small></span><div><button type="button" data-s="n_mat" data-d="-1" aria-label="Fewer extra mattresses">−</button><output id="n_mat">0</output><button type="button" data-s="n_mat" data-d="1" aria-label="More extra mattresses">+</button></div></div>
+        <div class="step"><span>Extra mattress<small>Rs 500 each / night · auto-added for extra guests</small></span><div><button type="button" data-s="n_mat" data-d="-1" aria-label="Fewer extra mattresses">−</button><output id="n_mat">0</output><button type="button" data-s="n_mat" data-d="1" aria-label="More extra mattresses">+</button></div></div>
       </div>
     </fieldset>
     <div class="price full" id="bPrice" aria-live="polite"></div>
     <div class="fld">
       <label for="bName">Your name</label>
-      <input type="text" id="bName" autocomplete="name" required>
+      <input type="text" id="bName" autocomplete="name" maxlength="60" required>
     </div>
     <div class="fld">
       <label for="bPhone">Phone (optional)</label>
-      <input type="tel" id="bPhone" autocomplete="tel" inputmode="tel" placeholder="03xx xxxxxxx">
+      <input type="tel" id="bPhone" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="03xx xxxxxxx">
     </div>
     <div class="fld">
       <label for="bType">Travelling as</label>
@@ -674,7 +676,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
     </div>
     <div class="fld">
       <label for="bNote">Special request</label>
-      <input type="text" id="bNote" placeholder="Arrival time, ground floor…">
+      <input type="text" id="bNote" maxlength="200" placeholder="Arrival time, ground floor…">
     </div>
     <div class="bk-foot full">
       <p class="err" id="bErr" role="alert"></p>
@@ -686,7 +688,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
     <div class="tick">✓</div>
     <h3>Almost done!</h3>
     <p>WhatsApp has opened with your booking details and total price. Press <b>Send</b> there and our team will confirm availability shortly.</p>
-    <p><a class="btn btn-wa" id="bLink" href="#" target="_blank" rel="noopener">WhatsApp didn't open? Tap here</a></p>
+    <p><a class="btn btn-wa" id="bLink" href="#" target="_blank" rel="noopener noreferrer">WhatsApp didn't open? Tap here</a></p>
     <p>Or call <a href="tel:+923000225347"><b>+92 300 0225347</b></a></p>
     <button class="btn btn-ghost btn-sm" type="button" data-close>Close</button>
   </div>
@@ -708,6 +710,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
   var $ = function(id){ return document.getElementById(id); };
   var bk = $('bk'), form = $('bkF'), bIn = $('bIn'), bOut = $('bOut'), qIn = $('qIn'), qOut = $('qOut');
   var limits = { n_male:[0,12], n_female:[0,12], n_kids:[0,10], n_rooms:[1,8], n_mat:[0,6] };
+  var extra = 0; // mattresses the guest added on top of the automatic ones
 
   function iso(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
   function addDays(s, n){ var d = new Date(s + 'T00:00'); d.setDate(d.getDate() + n); return iso(d); }
@@ -720,13 +723,15 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
   function val(id){ return parseInt($(id).textContent, 10); }
   function rs(n){ return 'Rs ' + n.toLocaleString('en-US'); }
   function pl(n, w){ return n + ' ' + w + (n === 1 ? '' : 's'); }
+  // typed text goes into the WhatsApp message: drop control and formatting characters, cap the length
+  function clean(t, max){ return t.replace(/[\u0000-\u001f\u007f*_~`]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max); }
 
   var today = iso(new Date());
   $('yr').textContent = new Date().getFullYear();
 
   // keep check-out after check-in
   function pair(i, o){
-    i.min = today;
+    i.min = today; i.max = addDays(today, 365);
     function sync(){
       o.min = addDays(i.value || today, 1);
       if (i.value && (!o.value || o.value <= i.value)) o.value = addDays(i.value, 1);
@@ -750,8 +755,12 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 
   // redraw price and buttons on every change
   function render(){
+    // one mattress is added automatically for every guest above the rooms' capacity
+    var cap = RATES[form.querySelector('input[name=room]:checked').value].cap * val('n_rooms');
+    var auto = Math.max(0, val('n_male') + val('n_female') + val('n_kids') - cap);
+    $('n_mat').textContent = auto + extra;
     form.querySelectorAll('[data-s]').forEach(function(b){
-      var id = b.dataset.s, v = val(id), d = +b.dataset.d;
+      var id = b.dataset.s, v = id === 'n_mat' ? extra : val(id), d = +b.dataset.d;
       b.disabled = (d < 0 && v <= limits[id][0]) || (d > 0 && v >= limits[id][1]);
     });
     var q = quote(), per = ' × ' + pl(q.nights || 1, 'night');
@@ -759,7 +768,8 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
     if (q.mat) h += '<div><span>Extra mattress · ' + q.mat + per + '</span><span>' + rs(q.matTotal) + '</span></div>';
     h += '<div class="t"><span>' + (q.nights ? 'Total for ' + pl(q.nights, 'night') : 'Total per night') + ' (incl. tax)</span><span>' + rs(q.total) + '</span></div>';
     if (!q.nights) h += '<span class="hint">Choose your dates to see the full total.</span>';
-    if (q.guests > q.cap * q.rooms + q.mat) h += '<span class="tip">' + pl(q.guests, 'guest') + ': this room sleeps ' + q.cap + ' per room. Add a room or an extra mattress.</span>';
+    if (auto) h += '<span class="tip">' + (auto === 1 ? '1 extra mattress' : auto + ' extra mattresses') + ' added automatically: ' + pl(q.guests, 'guest') + ', but ' + pl(q.rooms, 'room') + (q.rooms === 1 ? ' sleeps ' : ' sleep ') + cap + '.</span>';
+    if (q.mat > 2 * q.rooms) h += '<span class="hint">Tip: adding another room may be more comfortable.</span>';
     $('bPrice').innerHTML = h;
     $('bTot').textContent = rs(q.total);
     $('bTotL').textContent = q.nights ? pl(q.nights, 'night') + ' · ' + pl(q.rooms, 'room') + ' · incl. tax' : 'Per night · incl. tax';
@@ -769,8 +779,9 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
   form.addEventListener('change', render);
   form.addEventListener('click', function(e){
     var b = e.target.closest('[data-s]'); if (!b) return;
-    var id = b.dataset.s, v = val(id) + (+b.dataset.d);
-    $(id).textContent = Math.max(limits[id][0], Math.min(limits[id][1], v));
+    var id = b.dataset.s, v = (id === 'n_mat' ? extra : val(id)) + (+b.dataset.d);
+    v = Math.max(limits[id][0], Math.min(limits[id][1], v));
+    if (id === 'n_mat') extra = v; else $(id).textContent = v;
     render();
   });
 
@@ -803,14 +814,16 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    var name = $('bName').value.trim(), m = val('n_male'), f = val('n_female'), k = val('n_kids'), q = quote();
+    var name = clean($('bName').value, 60), phone = clean($('bPhone').value, 20), note = clean($('bNote').value, 200), m = val('n_male'), f = val('n_female'), k = val('n_kids'), q = quote();
     var msg = '';
     if (!bIn.value) msg = 'Please choose your check-in date.';
     else if (!bOut.value) msg = 'Please choose your check-out date.';
     else if (bIn.value < today) msg = 'Check-in date cannot be in the past.';
     else if (q.nights < 1) msg = 'Check-out must be after check-in.';
     else if (m + f < 1) msg = 'Please add at least one adult.';
-    else if (!name) msg = 'Please enter your name.';
+    else if (q.nights > 60) msg = 'For stays longer than 60 nights, please call us.';
+    else if (name.length < 2) msg = 'Please enter your name.';
+    else if (phone && !/^\+?[0-9 ()-]{7,20}$/.test(phone)) msg = 'Please enter a valid phone number.';
     $('bErr').textContent = msg;
     if (msg) return;
 
@@ -829,7 +842,6 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
       'Travelling as: ' + $('bType').value,
       'Name: ' + name
     ];
-    var phone = $('bPhone').value.trim(), note = $('bNote').value.trim();
     if (phone) lines.push('Phone: ' + phone);
     if (note) lines.push('Request: ' + note);
     lines.push('', '*Price (incl. tax)*',
@@ -840,7 +852,7 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
     var url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(lines.join('\n'));
     $('bLink').href = url;
     bk.classList.add('sent');
-    window.open(url, '_blank', 'noopener');
+    window.open(url, '_blank', 'noopener,noreferrer');
   });
 
   // gallery lightbox
