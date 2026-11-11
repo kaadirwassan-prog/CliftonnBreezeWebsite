@@ -807,16 +807,17 @@ h1,h2,h3{font-weight:400}
   // shared counter of booking requests that passed every check and were handed to WhatsApp
   var COUNT_API = 'https://abacus.jasoncameron.dev/', COUNT_KEY = 'gh-7f3k2q/requests';
   function showCount(n){
-    if (!(n > 0)) return;
+    if (!(n >= 0)) return; // -1 means the counter service could not be reached: stay hidden
     $('cntN').textContent = n.toLocaleString('en-US');
     $('cntT').textContent = n === 1 ? ' booking request sent through this website' : ' booking requests sent through this website';
     $('cnt').hidden = false;
   }
   function count(path){
-    return fetch(COUNT_API + path + '/' + COUNT_KEY)
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(j){ return j && typeof j.value === 'number' ? j.value : 0; })
-      .catch(function(){ return 0; });
+    // keepalive lets the request finish even when the phone switches to WhatsApp; "not found" means nothing counted yet
+    return fetch(COUNT_API + path + '/' + COUNT_KEY, { keepalive: true })
+      .then(function(r){ return r.status === 404 ? { value: 0 } : r.ok ? r.json() : null; })
+      .then(function(j){ return j && typeof j.value === 'number' ? j.value : -1; })
+      .catch(function(){ return -1; });
   }
   count('get').then(showCount);
 
@@ -983,8 +984,6 @@ h1,h2,h3{font-weight:400}
     var url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(lines.join('\n'));
     $('bLink').href = url;
     bk.classList.add('sent');
-    window.open(url, '_blank', 'noopener,noreferrer');
-
     store('cb_guest', { name: name, phone: phone });
     // count each real request once: the same details sent again within 30 minutes are not counted twice
     var sig = [loc, bIn.value, bOut.value, q.room, q.rooms, m, f, k, name].join('|'), last = store('cb_last'), num = $('bNum');
@@ -992,12 +991,14 @@ h1,h2,h3{font-weight:400}
     if (!last || last.sig !== sig || Date.now() - last.t > 18e5) {
       store('cb_last', { sig: sig, t: Date.now() });
       count('hit').then(function(n){
-        if (!n) return;
+        if (n < 1) return;
         showCount(n);
         num.textContent = 'Your request is number ' + n.toLocaleString('en-US') + ' sent through this website.';
         num.hidden = false;
       });
     }
+    // open WhatsApp last, after the count request has already left the page
+    window.open(url, '_blank', 'noopener,noreferrer');
   });
 
   // gallery lightbox
