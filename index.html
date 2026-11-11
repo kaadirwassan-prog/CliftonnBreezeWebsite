@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.google.com; connect-src 'self' https://abacus.jasoncameron.dev; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Guest House in Clifton &amp; DHA Karachi | Clifton Breeze Guest House</title>
 <meta name="description" content="Clifton Breeze Guest House – clean, air-conditioned rooms and family suites in Clifton and DHA, Karachi. Rooms from Rs 8,000 per night incl. tax, 24/7 front desk, WiFi. Book online in 1 minute or call +92 300 0225347.">
@@ -290,6 +290,16 @@ dialog::backdrop{background:rgba(6,28,32,.7)}
 .err{color:#b3261e;font-size:14px;font-weight:600;min-height:0}
 .bk-b .btn{width:100%;padding:15px;font-size:17px}
 .note{font-size:13px;color:var(--muted);text-align:center}
+.cnt{display:inline-flex;align-items:center;gap:9px;margin-top:22px;background:rgb(255 255 255 / .12);border:1px solid rgb(255 255 255 / .28);border-radius:999px;padding:8px 16px;font-size:14.5px;color:#fff;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.cnt[hidden],.nudge[hidden]{display:none}
+.cnt b{color:var(--gold-l);font-size:1.1rem}
+.cnt::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 4px rgb(61 220 132 / .25)}
+.why{margin-top:28px}
+.done p.bnum{font-weight:700;color:var(--ink)}
+.nudge{position:fixed;right:18px;bottom:18px;z-index:55;max-width:330px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:16px 42px 16px 18px;box-shadow:0 20px 50px rgb(0 0 0 / .25);display:grid;gap:10px;justify-items:start}
+.nudge p{font-size:14.5px;line-height:1.45}
+.nx{position:absolute;right:8px;top:6px;border:0;background:none;font-size:22px;line-height:1;color:var(--muted);cursor:pointer;padding:6px}
+@media (max-width:720px){.nudge{left:12px;right:12px;bottom:78px;max-width:none}}
 .done{padding:34px 24px;text-align:center;display:none;overflow-y:auto}
 .done h3{font-size:1.5rem;margin:10px 0}
 .done p{color:var(--muted);margin-bottom:18px}
@@ -443,6 +453,7 @@ h1,h2,h3{font-weight:400}
       <h1>Comfortable Guest House in <em>Clifton &amp; DHA</em>, Karachi</h1>
       <p class="lead">Clean, air-conditioned rooms and family suites for families, couples and business travellers — with a front desk that is open 24/7.</p>
       <div class="c-cta"><button class="btn btn-gold" data-book>Book Your Stay</button><a class="btn c-out" href="#rooms">View rooms &amp; rates</a></div>
+      <p class="cnt" id="cnt" hidden><span><b id="cntN">0</b><span id="cntT"> booking requests sent through this website</span></span></p>
     </div>
   </section>
   <div class="wrap c-bar"><form class="quick" id="quick" aria-label="Check availability">
@@ -581,6 +592,12 @@ h1,h2,h3{font-weight:400}
         <li><h3>Send the request</h3><p>Your details open as a ready-made WhatsApp message to our booking desk. Just press send.</p></li>
         <li><h3>Get confirmation</h3><p>We confirm availability and send the exact location pin. You see the total price before you send.</p></li>
       </ol>
+      <ul class="amen why">
+        <li><svg class="i"><use href="#i-check"/></svg>No advance payment online</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Total price shown before you send</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Reply from our booking desk on WhatsApp</li>
+        <li><svg class="i"><use href="#i-check"/></svg>Front desk open 24/7</li>
+      </ul>
       <div class="center"><button class="btn btn-gold" data-book>Start Your Booking</button></div>
     </div>
   </section>
@@ -663,6 +680,13 @@ h1,h2,h3{font-weight:400}
   <button class="btn btn-gold" data-book>Book Now</button>
 </div>
 
+<!-- Gentle reminder for visitors who have not opened the booking form -->
+<div class="nudge" id="nudge" hidden>
+  <p><b>Planning a stay in Karachi?</b><br>See the total price for your dates in under a minute.</p>
+  <button class="btn btn-gold btn-sm" data-book>Check price</button>
+  <button class="nx" type="button" aria-label="Dismiss">×</button>
+</div>
+
 <!-- Booking dialog -->
 <dialog id="bk" aria-labelledby="bkT">
   <div class="bk-h">
@@ -735,6 +759,7 @@ h1,h2,h3{font-weight:400}
   <div class="done">
     <div class="tick">✓</div>
     <h3>Almost done!</h3>
+    <p class="bnum" id="bNum" hidden></p>
     <p>WhatsApp has opened with your booking details and total price. Press <b>Send</b> there and our team will confirm availability shortly.</p>
     <p><a class="btn btn-wa" id="bLink" href="#" target="_blank" rel="noopener noreferrer">WhatsApp didn't open? Tap here</a></p>
     <p>Or call <a href="tel:+923000225347"><b>+92 300 0225347</b></a></p>
@@ -778,6 +803,45 @@ h1,h2,h3{font-weight:400}
 
   var today = iso(new Date());
   $('yr').textContent = new Date().getFullYear();
+
+  // shared counter of booking requests that passed every check and were handed to WhatsApp
+  var COUNT_API = 'https://abacus.jasoncameron.dev/', COUNT_KEY = 'gh-7f3k2q/requests';
+  function showCount(n){
+    if (!(n > 0)) return;
+    $('cntN').textContent = n.toLocaleString('en-US');
+    $('cntT').textContent = n === 1 ? ' booking request sent through this website' : ' booking requests sent through this website';
+    $('cnt').hidden = false;
+  }
+  function count(path){
+    return fetch(COUNT_API + path + '/' + COUNT_KEY)
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ return j && typeof j.value === 'number' ? j.value : 0; })
+      .catch(function(){ return 0; });
+  }
+  count('get').then(showCount);
+
+  // small things remembered in this visitor's own browser only
+  function store(k, v){
+    try {
+      if (v === undefined) return JSON.parse(localStorage.getItem(k) || 'null');
+      localStorage.setItem(k, JSON.stringify(v));
+    } catch (e) { return null; }
+  }
+  var guest = store('cb_guest');
+  if (guest){ $('bName').value = guest.name || ''; $('bPhone').value = guest.phone || ''; }
+
+  // reminder: shown once per visit, only to people who have not opened the booking form
+  var nudge = $('nudge'), opened = false;
+  function nudgeOff(){ nudge.hidden = true; try { sessionStorage.setItem('cb_nudge', '1'); } catch (e) {} }
+  function nudgeOn(){
+    var seen; try { seen = sessionStorage.getItem('cb_nudge'); } catch (e) {}
+    if (!opened && !seen && !$('bk').open) nudge.hidden = false;
+  }
+  setTimeout(nudgeOn, 25000);
+  window.addEventListener('scroll', function half(){
+    if (scrollY > (document.documentElement.scrollHeight - innerHeight) * .45){ window.removeEventListener('scroll', half); nudgeOn(); }
+  }, { passive: true });
+  nudge.querySelector('.nx').addEventListener('click', nudgeOff);
 
   // keep check-out after check-in
   function pair(i, o){
@@ -853,6 +917,7 @@ h1,h2,h3{font-weight:400}
 
   function openBooking(opt){
     opt = opt || {};
+    opened = true; nudgeOff();
     bk.classList.remove('sent');
     if (opt.loc){ var r = form.querySelector('input[name=loc][value="' + opt.loc + '"]'); if (r) r.checked = true; }
     if (opt.room){ var t = form.querySelector('input[name=room][value="' + opt.room + '"]'); if (t) t.checked = true; }
@@ -919,6 +984,20 @@ h1,h2,h3{font-weight:400}
     $('bLink').href = url;
     bk.classList.add('sent');
     window.open(url, '_blank', 'noopener,noreferrer');
+
+    store('cb_guest', { name: name, phone: phone });
+    // count each real request once: the same details sent again within 30 minutes are not counted twice
+    var sig = [loc, bIn.value, bOut.value, q.room, q.rooms, m, f, k, name].join('|'), last = store('cb_last'), num = $('bNum');
+    num.hidden = true;
+    if (!last || last.sig !== sig || Date.now() - last.t > 18e5) {
+      store('cb_last', { sig: sig, t: Date.now() });
+      count('hit').then(function(n){
+        if (!n) return;
+        showCount(n);
+        num.textContent = 'Your request is number ' + n.toLocaleString('en-US') + ' sent through this website.';
+        num.hidden = false;
+      });
+    }
   });
 
   // gallery lightbox
